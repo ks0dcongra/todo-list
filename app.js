@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose') // 載入 mongoose
 
-const mongodb_url = require('./mongodb_password')
+const mongodb_url = require('./mongodb_url')
 
 const port = 3000
 
