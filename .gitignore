@@ -7,7 +7,7 @@ Icon?
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-mongodb_password.js
+mongodb_url.js
 
 # npm
 node_modules
