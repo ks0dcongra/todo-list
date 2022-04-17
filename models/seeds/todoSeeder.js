@@ -14,7 +14,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
   for (let i = 0; i < 10; i++) {
-    Todo.create({ name: `ddddddddname-${i}` })
+    Todo.create({ name: `REST-${i}`, name_en: `RUNT-${i}` })
   }
   console.log('done')
 })
