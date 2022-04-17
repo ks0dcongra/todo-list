@@ -7,6 +7,8 @@ const port = 3030
 const Todo = require('./models/todo')
 // 引用 body-parser
 const bodyParser = require('body-parser')
+// 載入 method-override
+const methodOverride = require('method-override')
 // 取得資料庫連線狀態
 const db = mongoose.connection
 // 連線異常
@@ -18,11 +20,18 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+
+
+
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
+
+
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 
 // mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connect(mongodb_url(), { useNewUrlParser: true, useUnifiedTopology: true })
@@ -77,7 +86,7 @@ app.get('/todos/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/todos/:id/edit', (req, res) => {
+app.put('/todos/:id', (req, res) => {
   const id = req.params.id
   const { name, isDone } = req.body
   return Todo.findById(id)
@@ -90,7 +99,7 @@ app.post('/todos/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/todos/:id/delete', (req, res) => {
+app.delete('/todos/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
     .then(todo => todo.remove())
