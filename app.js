@@ -3,7 +3,7 @@ const app = express()
 
 
 const exphbs = require('express-handlebars')
-const port = 3030
+const PORT = process.env.PORT || 3030
 const Todo = require('./models/todo')
 // 引用 body-parser
 const bodyParser = require('body-parser')
@@ -47,8 +47,8 @@ app.use(routes)
 
 
 
-app.listen(port, () => {
-  console.log('App is running on http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`);
 })
 
 
