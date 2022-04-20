@@ -1,15 +1,15 @@
 <ul class="list-group">
   {{#each todos}}
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-auto mr-auto mt-2">
+  <li class="list-group-item position-relative top-0 end-0">
+    <div class="row d-flex ">
+      <div class="col-auto mr-auto mt-2  ">
         <input style="vertical-align: middle;" type="checkbox" name="isDone" {{#if this.isDone }} checked {{/if}}
           disabled>
         <h4 style="display: inline; vertical-align: middle;">
           {{ this.name }}
         </h4>
       </div>
-      <div class="col-auto mr-auto">
+      <div class="col-auto position-absolute top-1 end-0">
         <a class="btn btn-secondary" href="./todos/{{ this._id }}">detail</a>
         <a class="btn btn-success" href="./todos/{{ this._id }}/edit">edit</a>
         <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
